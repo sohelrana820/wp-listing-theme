@@ -1,0 +1,4 @@
+.acf_postbox > .inside > .field {
+    padding: 15px 10px;
+    border-top: red solid 1px !important;
+}
