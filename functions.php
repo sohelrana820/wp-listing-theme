@@ -255,6 +255,11 @@ function vehicle_specifications( $meta_boxes ) {
         'autosave' => true,
         'fields' => array(
             array(
+                'id' => $prefix . 'vehicle_main_image',
+                'type' => 'image_advanced',
+                'name' => esc_html__( 'Main Image', 'metabox-online-generator' ),
+            ),
+            array(
                 'id' => $prefix . 'vehicle_brands',
                 'type' => 'taxonomy_advanced',
                 'name' => esc_html__( 'Brands', 'metabox-online-generator' ),
@@ -311,32 +316,112 @@ function vehicle_specifications( $meta_boxes ) {
                 'placeholder' => esc_html__( 'Model', 'metabox-online-generator' ),
             ),
             array(
-                'id' => $prefix . 'engine',
+                'id' => $prefix . 'vehicle_listing_price',
+                'type' => 'number',
+                'name' => esc_html__( 'Listing Price', 'metabox-online-generator' ),
+                'placeholder' => esc_html__( 'Listing Price', 'metabox-online-generator' ),
+            ),
+            array(
+                'id' => $prefix . 'vehicle_sale_price',
+                'type' => 'number',
+                'name' => esc_html__( 'Sale Price', 'metabox-online-generator' ),
+                'placeholder' => esc_html__( 'Sale Price', 'metabox-online-generator' ),
+            ),
+            array(
+                'id' => $prefix . 'vehicle_stock',
+                'type' => 'number',
+                'name' => esc_html__( 'Stock', 'metabox-online-generator' ),
+                'placeholder' => esc_html__( 'Stock', 'metabox-online-generator' ),
+            ),
+            array(
+                'id' => $prefix . 'vehicle_expiry',
+                'type' => 'date',
+                'name' => esc_html__( 'Expire', 'metabox-online-generator' ),
+                'placeholder' => esc_html__( 'Expire', 'metabox-online-generator' ),
+            ),
+            array(
+                'id' => $prefix . 'vehicle_manufacture_year',
+                'type' => 'date',
+                'name' => esc_html__( 'Manufacture', 'metabox-online-generator' ),
+                'placeholder' => esc_html__( 'Manufacture', 'metabox-online-generator' ),
+            ),
+            array(
+                'id' => $prefix . 'vehicle_engine',
                 'type' => 'text',
                 'name' => esc_html__( 'Engine', 'metabox-online-generator' ),
                 'placeholder' => esc_html__( 'Engine', 'metabox-online-generator' ),
             ),
-            'validation' => array(
-                'rules'    => array(
-                    "vehicle_model" => array(
-                        'required'  => true,
-                        'minlength' => 7,
-                    ),
-                ),
-                // Optional override of default error messages
-                'messages' => array(
-                    "vehicle_model" => array(
-                        'required'  => __( 'Password is required', 'vehicle_model' ),
-                        'minlength' => __( 'Password must be at least 7 characters', 'vehicle_model' ),
-                    ),
-                )
-            )
+            array(
+                'id' => $prefix . 'vehicle_horse_power',
+                'type' => 'text',
+                'name' => esc_html__( 'Horse Power', 'metabox-online-generator' ),
+                'placeholder' => esc_html__( 'Horse Power', 'metabox-online-generator' ),
+            ),
+            array(
+                'id' => $prefix . 'vehicle_color',
+                'type' => 'text',
+                'name' => esc_html__( 'Color', 'metabox-online-generator' ),
+                'placeholder' => esc_html__( 'Color', 'metabox-online-generator' ),
+            ),
+            array(
+                'id' => $prefix . 'vehicle_top_speed',
+                'type' => 'number',
+                'name' => esc_html__( 'Top Speed', 'metabox-online-generator' ),
+                'placeholder' => esc_html__( 'Top Speed', 'metabox-online-generator' ),
+            ),
+            array(
+                'id' => $prefix . 'vehicle_odometer',
+                'type' => 'text',
+                'name' => esc_html__( 'Odometer', 'metabox-online-generator' ),
+                'placeholder' => esc_html__( 'Odometer', 'metabox-online-generator' ),
+            ),
+            array(
+                'id' => $prefix . 'vehicle_towing_capacity',
+                'type' => 'text',
+                'name' => esc_html__( 'Towing Capacity', 'metabox-online-generator' ),
+                'placeholder' => esc_html__( 'Towing Capacity', 'metabox-online-generator' ),
+            ),
+            array(
+                'id' => $prefix . 'vehicle_body_style',
+                'type' => 'text',
+                'name' => esc_html__( 'Body Style', 'metabox-online-generator' ),
+                'placeholder' => esc_html__( 'Body Style', 'metabox-online-generator' ),
+            ),
+            array(
+                'id' => $prefix . 'vehicle_exaterion',
+                'type' => 'text',
+                'name' => esc_html__( 'Exaterion', 'metabox-online-generator' ),
+                'placeholder' => esc_html__( 'Exaterion', 'metabox-online-generator' ),
+            ),
+            array(
+                'id' => $prefix . 'vehicle_tnterior',
+                'type' => 'text',
+                'name' => esc_html__( 'Interior', 'metabox-online-generator' ),
+                'placeholder' => esc_html__( 'Interior', 'metabox-online-generator' ),
+            ),
+            array(
+                'id' => $prefix . 'vehicle_passengers',
+                'type' => 'text',
+                'name' => esc_html__( 'Passengers', 'metabox-online-generator' ),
+                'placeholder' => esc_html__( 'Passengers', 'metabox-online-generator' ),
+            ),
+            array(
+                'id' => $prefix . 'vehicle_mileage',
+                'type' => 'text',
+                'name' => esc_html__( 'Mileage', 'metabox-online-generator' ),
+                'placeholder' => esc_html__( 'Mileage', 'metabox-online-generator' ),
+            ),
+            array(
+                'id' => $prefix . 'vehicle_miles',
+                'type' => 'text',
+                'name' => esc_html__( 'Miles', 'metabox-online-generator' ),
+                'placeholder' => esc_html__( 'Miles', 'metabox-online-generator' ),
+            ),
         ),
     );
 
     return $meta_boxes;
 }
-
 
 function vehicle_gullary( $meta_boxes ) {
     $prefix = 'prefix-';
