@@ -1,6 +1,6 @@
 <?php
 
-define('TEXT_DOMAIN', 'Transmission');
+define('TEXT_DOMAIN', 'carhouse');
 
 require_once(dirname(__FILE__) . '/inc/framework/ReduxCore/framework.php');
 require_once(dirname(__FILE__) . '/inc/framework/sample/car-house-theme-config.php');
@@ -228,7 +228,7 @@ add_action('init', 'custom_post_type_vehicle');
  */
 function vehicle_specifications($meta_boxes)
 {
-    $prefix = TEXT_DOMAIN . '-';
+    $prefix = TEXT_DOMAIN . '_';
 
     $meta_boxes[] = array(
         'id' => 'vehicle_specifications_section',
@@ -459,13 +459,13 @@ function vehicle_specifications($meta_boxes)
             ),
             array(
                 'id' => $prefix . 'vehicle_mileage',
-                'type' => 'text',
+                'type' => 'number',
                 'name' => esc_html__('Mileage', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Mileage', TEXT_DOMAIN),
             ),
             array(
                 'id' => $prefix . 'vehicle_miles',
-                'type' => 'text',
+                'type' => 'number',
                 'name' => esc_html__('Miles', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Miles', TEXT_DOMAIN),
             ),
@@ -481,7 +481,7 @@ function vehicle_specifications($meta_boxes)
  */
 function vehicle_features($meta_boxes)
 {
-    $prefix = TEXT_DOMAIN . '-';
+    $prefix = TEXT_DOMAIN . '_';
 
     $meta_boxes[] = array(
         'id' => 'vehicle_features_section',
@@ -510,7 +510,7 @@ function vehicle_features($meta_boxes)
  */
 function vehicle_gullaries($meta_boxes)
 {
-    $prefix = TEXT_DOMAIN . '-';
+    $prefix = TEXT_DOMAIN . '_';
 
     $meta_boxes[] = array(
         'id' => 'vehicle_features_gullaries',
@@ -521,7 +521,7 @@ function vehicle_gullaries($meta_boxes)
         'autosave' => false,
         'fields' => array(
             array(
-                'id' => $prefix . 'vehile_gullaries',
+                'id' => $prefix . 'vehicle_gullaries',
                 'type' => 'image_advanced',
                 'name' => esc_html__('Imges', TEXT_DOMAIN),
                 'desc' => esc_html__('Enter vehicle imges', TEXT_DOMAIN),
