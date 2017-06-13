@@ -228,8 +228,6 @@ add_action('init', 'custom_post_type_vehicle');
  */
 function vehicle_specifications($meta_boxes)
 {
-    $prefix = TEXT_DOMAIN . '_';
-
     $meta_boxes[] = array(
         'id' => 'vehicle_specifications_section',
         'title' => esc_html__('Vehicle Specifications', TEXT_DOMAIN),
@@ -239,12 +237,19 @@ function vehicle_specifications($meta_boxes)
         'autosave' => true,
         'fields' => array(
             array(
-                'id' => $prefix . 'vehicle_main_image',
+                'id' => 'vehicle_main_image',
                 'type' => 'image_advanced',
                 'name' => esc_html__('Main Image', TEXT_DOMAIN),
             ),
             array(
-                'id' => $prefix . 'vehicle_brands',
+                'id' => 'vehicle_short_description',
+                'type' => 'textarea',
+                'name' => esc_html__( 'Short Description', 'metabox-online-generator' ),
+                'placeholder' => esc_html__( 'Short Description', 'metabox-online-generator' ),
+                'rows' => 5,
+            ),
+            array(
+                'id' => 'vehicle_brands',
                 'type' => 'taxonomy_advanced',
                 'name' => esc_html__('Brands', TEXT_DOMAIN),
                 'std' => 'Choose',
@@ -254,7 +259,7 @@ function vehicle_specifications($meta_boxes)
                 'field_type' => 'select',
             ),
             array(
-                'id' => $prefix . 'vehicle_categories',
+                'id' => 'vehicle_categories',
                 'type' => 'taxonomy_advanced',
                 'name' => esc_html__('Categories', TEXT_DOMAIN),
                 'std' => 'Choose',
@@ -264,7 +269,7 @@ function vehicle_specifications($meta_boxes)
                 'field_type' => 'select',
             ),
             array(
-                'id' => $prefix . 'vehicle_conditions',
+                'id' => 'vehicle_conditions',
                 'type' => 'taxonomy_advanced',
                 'name' => esc_html__('Conditions', TEXT_DOMAIN),
                 'std' => 'Choose',
@@ -274,7 +279,7 @@ function vehicle_specifications($meta_boxes)
                 'field_type' => 'select',
             ),
             array(
-                'id' => $prefix . 'vehicle_fuels',
+                'id' => 'vehicle_fuels',
                 'type' => 'taxonomy_advanced',
                 'name' => esc_html__('Fuels', TEXT_DOMAIN),
                 'std' => 'Choose',
@@ -284,7 +289,7 @@ function vehicle_specifications($meta_boxes)
                 'field_type' => 'select',
             ),
             array(
-                'id' => $prefix . 'vehicle_transmissions',
+                'id' => 'vehicle_transmissions',
                 'type' => 'taxonomy_advanced',
                 'name' => esc_html__('Transmissions', TEXT_DOMAIN),
                 'std' => 'Choose',
@@ -294,37 +299,37 @@ function vehicle_specifications($meta_boxes)
                 'field_type' => 'select',
             ),
             array(
-                'id' => $prefix . 'vehicle_model',
+                'id' => 'vehicle_model',
                 'type' => 'text',
                 'name' => esc_html__('Model', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Model', TEXT_DOMAIN),
             ),
             array(
-                'id' => $prefix . 'vehicle_listing_price',
+                'id' => 'vehicle_listing_price',
                 'type' => 'number',
                 'name' => esc_html__('Listing Price', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Listing Price', TEXT_DOMAIN),
             ),
             array(
-                'id' => $prefix . 'vehicle_sale_price',
+                'id' => 'vehicle_sale_price',
                 'type' => 'number',
                 'name' => esc_html__('Sale Price', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Sale Price', TEXT_DOMAIN),
             ),
             array(
-                'id' => $prefix . 'vehicle_stock',
+                'id' => 'vehicle_stock',
                 'type' => 'number',
                 'name' => esc_html__('Stock', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Stock', TEXT_DOMAIN),
             ),
             array(
-                'id' => $prefix . 'vehicle_vin',
+                'id' => 'vehicle_vin',
                 'type' => 'number',
                 'name' => esc_html__('#VIN', TEXT_DOMAIN),
                 'placeholder' => esc_html__('VIN', TEXT_DOMAIN),
             ),
             array(
-                'id' => $prefix . 'vehicle_for',
+                'id' => 'vehicle_for',
                 'name' => esc_html__('Select', TEXT_DOMAIN),
                 'type' => 'select',
                 'placeholder' => esc_html__('Choose One', TEXT_DOMAIN),
@@ -334,37 +339,50 @@ function vehicle_specifications($meta_boxes)
                 ),
             ),
             array(
-                'id' => $prefix . 'vehicle_is_featured',
+                'id' => 'vehicle_status',
+                'name' => esc_html__('vehicle_status', TEXT_DOMAIN),
+                'type' => 'select',
+                'placeholder' => esc_html__('Choose Status', TEXT_DOMAIN),
+                'options' => array(
+                    'active' => 'Active',
+                    'inactive' => 'Inactive',
+                    'paused' => 'Paused',
+                    'invalid' => 'Invalid',
+                    'denied' => 'Denied',
+                ),
+            ),
+            array(
+                'id' => 'vehicle_is_featured',
                 'name' => esc_html__( 'Featured Vehicle?', TEXT_DOMAIN ),
                 'type' => 'checkbox',
                 'desc' => esc_html__( 'is it featured vehicle?', TEXT_DOMAIN ),
             ),
             array(
-                'id' => $prefix . 'vehicle_expiry',
+                'id' => 'vehicle_expiry',
                 'type' => 'date',
                 'name' => esc_html__('Expire', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Expire', TEXT_DOMAIN),
             ),
             array(
-                'id' => $prefix . 'vehicle_manufacture_year',
+                'id' => 'vehicle_manufacture_year',
                 'type' => 'date',
                 'name' => esc_html__('Manufacture', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Manufacture', TEXT_DOMAIN),
             ),
             array(
-                'id' => $prefix . 'vehicle_engine',
+                'id' => 'vehicle_engine',
                 'type' => 'text',
                 'name' => esc_html__('Engine', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Engine', TEXT_DOMAIN),
             ),
             array(
-                'id' => $prefix . 'vehicle_horse_power',
+                'id' => 'vehicle_horse_power',
                 'type' => 'text',
                 'name' => esc_html__('Horse Power', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Horse Power', TEXT_DOMAIN),
             ),
             array(
-                'id' => $prefix . 'vehicle_interior_color',
+                'id' => 'vehicle_interior_color',
                 'name' => esc_html__('Select', TEXT_DOMAIN),
                 'type' => 'select',
                 'placeholder' => esc_html__('Choose Color', TEXT_DOMAIN),
@@ -387,7 +405,7 @@ function vehicle_specifications($meta_boxes)
                 ),
             ),
             array(
-                'id' => $prefix . 'vehicle_exterior_color',
+                'id' => 'vehicle_exterior_color',
                 'name' => esc_html__('Select', TEXT_DOMAIN),
                 'type' => 'select',
                 'placeholder' => esc_html__('Choose Color', TEXT_DOMAIN),
@@ -410,61 +428,61 @@ function vehicle_specifications($meta_boxes)
                 ),
             ),
             array(
-                'id' => $prefix . 'vehicle_top_speed',
+                'id' => 'vehicle_top_speed',
                 'type' => 'number',
                 'name' => esc_html__('Top Speed', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Top Speed', TEXT_DOMAIN),
             ),
             array(
-                'id' => $prefix . 'vehicle_doors',
+                'id' => 'vehicle_doors',
                 'type' => 'number',
                 'name' => esc_html__('Doors', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Doors', TEXT_DOMAIN),
             ),
             array(
-                'id' => $prefix . 'vehicle_body_style',
+                'id' => 'vehicle_body_style',
                 'type' => 'text',
                 'name' => esc_html__('Body Style', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Body Style', TEXT_DOMAIN),
             ),
             array(
-                'id' => $prefix . 'vehicle_passengers',
+                'id' => 'vehicle_passengers',
                 'type' => 'text',
                 'name' => esc_html__('Passengers', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Passengers', TEXT_DOMAIN),
             ),
             array(
-                'id' => $prefix . 'vehicle_odometer',
+                'id' => 'vehicle_odometer',
                 'type' => 'text',
                 'name' => esc_html__('Odometer', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Odometer (Km)', TEXT_DOMAIN),
             ),
             array(
-                'id' => $prefix . 'vehicle_torque',
+                'id' => 'vehicle_torque',
                 'type' => 'number',
                 'name' => esc_html__('Torque', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Torque', TEXT_DOMAIN),
             ),
             array(
-                'id' => $prefix . 'vehicle_drive_train',
+                'id' => 'vehicle_drive_train',
                 'type' => 'text',
                 'name' => esc_html__('Drive Train', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Drive Train', TEXT_DOMAIN),
             ),
             array(
-                'id' => $prefix . 'vehicle_towing_capacity',
+                'id' => 'vehicle_towing_capacity',
                 'type' => 'text',
                 'name' => esc_html__('Towing Capacity', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Towing Capacity', TEXT_DOMAIN),
             ),
             array(
-                'id' => $prefix . 'vehicle_mileage',
+                'id' => 'vehicle_mileage',
                 'type' => 'number',
                 'name' => esc_html__('Mileage', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Mileage', TEXT_DOMAIN),
             ),
             array(
-                'id' => $prefix . 'vehicle_miles',
+                'id' => 'vehicle_miles',
                 'type' => 'number',
                 'name' => esc_html__('Miles', TEXT_DOMAIN),
                 'placeholder' => esc_html__('Miles', TEXT_DOMAIN),
@@ -481,8 +499,6 @@ function vehicle_specifications($meta_boxes)
  */
 function vehicle_features($meta_boxes)
 {
-    $prefix = TEXT_DOMAIN . '_';
-
     $meta_boxes[] = array(
         'id' => 'vehicle_features_section',
         'title' => esc_html__('Vehicle Features', TEXT_DOMAIN),
@@ -492,7 +508,7 @@ function vehicle_features($meta_boxes)
         'autosave' => true,
         'fields' => array(
             array(
-                'id' => $prefix . 'vehicle_features',
+                'id' => 'vehicle_features',
                 'type' => 'taxonomy_advanced',
                 'name' => esc_html__('Featured', TEXT_DOMAIN),
                 'taxonomy' => 'vehicle_features',
@@ -510,8 +526,6 @@ function vehicle_features($meta_boxes)
  */
 function vehicle_gullaries($meta_boxes)
 {
-    $prefix = TEXT_DOMAIN . '_';
-
     $meta_boxes[] = array(
         'id' => 'vehicle_features_gullaries',
         'title' => esc_html__('Vehicle Gullaries', TEXT_DOMAIN),
@@ -521,7 +535,7 @@ function vehicle_gullaries($meta_boxes)
         'autosave' => false,
         'fields' => array(
             array(
-                'id' => $prefix . 'vehicle_gullaries',
+                'id' => 'vehicle_gullaries',
                 'type' => 'image_advanced',
                 'name' => esc_html__('Imges', TEXT_DOMAIN),
                 'desc' => esc_html__('Enter vehicle imges', TEXT_DOMAIN),
@@ -544,3 +558,25 @@ add_filter('rwmb_meta_boxes', 'vehicle_gullaries');
  * ****** End Adding Vehicle Custom Fields *****
  * *********************************************
  */
+
+/**
+ * @param $query
+ * @return WP_Query
+ */
+function getActiveVehicles($query)
+{
+    $defaultQuery = array(
+        'post_type' => 'vehicles',
+        'meta_query' => array(
+            array(
+                'key'     => 'vehicle_status',
+                'value'   => 'active',
+                'compare' => '=',
+            )
+        ),
+        'posts_per_page' => 3
+    );
+
+    $defaultQuery = array_merge($defaultQuery, $query);
+    return new WP_Query($defaultQuery);
+}

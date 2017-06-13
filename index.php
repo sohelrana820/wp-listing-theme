@@ -1,7 +1,5 @@
 <?php get_header();?>
 
-
-
 <!-- Recent car start-->
 <div class="recent-car content-area">
     <div class="container">
@@ -18,68 +16,13 @@
             </div>
 
             <div class="row">
-                <?php $args = array(
-                    'posts_per_page'   => 5,
-                    'offset'           => 0,
-                    'category'         => '',
-                    'category_name'    => '',
-                    'orderby'          => 'date',
-                    'order'            => 'DESC',
-                    'include'          => '',
-                    'exclude'          => '',
-                    'meta_key'         => '',
-                    'meta_value'       => '',
-                    'post_type'        => 'vehicles',
-                    'post_mime_type'   => '',
-                    'post_parent'      => '',
-                    'author'	   => '',
-                    'author_name'	   => '',
-                    'post_status'      => 'publish',
-                    'suppress_filters' => true
-                );
-                $vehicles = get_posts( $args );
-                foreach ($vehicles as $vehicle):
-                ?>
+                <?php
+                $vehicles = getActiveVehicles($args = ['posts_per_page' => 3]);
+                while ($vehicles->have_posts()): $vehicles->the_post(); ?>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                    <div class="thumbnail car-box">
-                        <img src="<?php echo get_template_directory_uri()?>/assets/img/grid/bmw_emw_m3_diski_serie.jpg" alt="bmw_emw_m3_diski_serie">
-                        <div class="caption car-content">
-                            <div class="header b-items-cars-one-info-header s-lineDownLeft">
-                                <h3>
-                                    <a href="car_details.html"><?php echo $vehicle->post_title;?></a>
-                                    <span>$49.000</span>
-                                </h3>
-                            </div>
-
-
-
-                            <p><?php
-                                var_dump($vehicle->post_content);
-                                $result = get_post_meta($vehicle->ID, "carhouse_vehicle_features", true);
-                                var_dump($result);
-                                var_dump(rwmb_meta( 'carhouse_vehicle_features',[], $vehicle->ID));
-                                ?>
-                            </p>
-                            <div class="car-tags">
-                                <ul>
-                                    <li>2016</li>
-                                    <li>Bensin</li>
-                                    <li>Sport</li>
-                                    <li>12.888m</li>
-                                </ul>
-                            </div>
-                            <div class="ster-fa">
-                                <i class="fa fa-star orange-color"></i>
-                                <i class="fa fa-star orange-color"></i>
-                                <i class="fa fa-star orange-color"></i>
-                                <i class="fa fa-star orange-color"></i>
-                                <i class="fa fa-star-o orange-color"></i>
-                            </div>
-                            <a href="car_details.html" class="btn details-button">Preview</a>
-                        </div>
+                        <?php get_template_part('elements/listing') ?>
                     </div>
-                </div>
-                <?php endforeach;?>
+                <?php endwhile; ?>
             </div>
         </div>
     </div>
