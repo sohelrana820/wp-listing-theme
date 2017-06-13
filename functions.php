@@ -324,6 +324,22 @@ function vehicle_specifications($meta_boxes)
                 'placeholder' => esc_html__('VIN', TEXT_DOMAIN),
             ),
             array(
+                'id' => $prefix . 'vehicle_for',
+                'name' => esc_html__('Select', TEXT_DOMAIN),
+                'type' => 'select',
+                'placeholder' => esc_html__('Choose One', TEXT_DOMAIN),
+                'options' => array(
+                    'Sale' => 'Sale',
+                    'Rent' => 'Rent',
+                ),
+            ),
+            array(
+                'id' => $prefix . 'vehicle_is_featured',
+                'name' => esc_html__( 'Featured Vehicle?', TEXT_DOMAIN ),
+                'type' => 'checkbox',
+                'desc' => esc_html__( 'is it featured vehicle?', TEXT_DOMAIN ),
+            ),
+            array(
                 'id' => $prefix . 'vehicle_expiry',
                 'type' => 'date',
                 'name' => esc_html__('Expire', TEXT_DOMAIN),
