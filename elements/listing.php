@@ -23,13 +23,13 @@
                 <li><?php echo get_post_meta(get_the_ID(), 'vehicle_manufacture_year', true)?></li>
                 <li>
                     <?php
-                    $brand = rwmb_meta( 'vehicle_brands',[], get_the_ID());
+                    $brand = rwmb_meta( 'vehicle_brand',[], get_the_ID());
                     echo $brand->name;
                     ?>
                 </li>
                 <li>
                     <?php
-                    $category = rwmb_meta( 'vehicle_categories',[], get_the_ID());
+                    $category = rwmb_meta( 'vehicle_category',[], get_the_ID());
                     echo $category->name;
                     ?>
                 </li>

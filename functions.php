@@ -25,6 +25,110 @@ function carHouseThemeSetup()
 add_action('after_setup_theme', 'carHouseThemeSetup');
 
 
+if(function_exists("register_field_group"))
+{
+    register_field_group(array (
+        'id' => 'acf_listing-title',
+        'title' => 'Listing Title',
+        'fields' => array (
+            array (
+                'key' => 'field_5941848e73b23',
+                'label' => 'Title',
+                'name' => 'title',
+                'type' => 'text',
+                'default_value' => 'Recent Car',
+                'placeholder' => 'Title',
+                'prepend' => '',
+                'append' => '',
+                'formatting' => 'html',
+                'maxlength' => '',
+            ),
+            array (
+                'key' => 'field_594184fc73b24',
+                'label' => 'Subtitle',
+                'name' => 'subtitle',
+                'type' => 'text',
+                'default_value' => 'Check our recent motors',
+                'placeholder' => 'Subtitle',
+                'prepend' => '',
+                'append' => '',
+                'formatting' => 'html',
+                'maxlength' => '',
+            ),
+        ),
+        'location' => array (
+            array (
+                array (
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'index.php',
+                    'order_no' => 0,
+                    'group_no' => 0,
+                ),
+            ),
+        ),
+        'options' => array (
+            'position' => 'normal',
+            'layout' => 'default',
+            'hide_on_screen' => array (
+            ),
+        ),
+        'menu_order' => 0,
+    ));
+    register_field_group(array (
+        'id' => 'acf_home-page-testimonial',
+        'title' => 'Home Page Testimonial',
+        'fields' => array (
+            array (
+                'key' => 'field_59418674ae692',
+                'label' => 'Enabled/Disable Testimonial Section?',
+                'name' => 'enabled_disable_testimonial_section',
+                'type' => 'select',
+                'choices' => array (
+                    'Yes' => 'Yes',
+                    'No' => 'No',
+                ),
+                'default_value' => 'Yes',
+                'allow_null' => 0,
+                'multiple' => 0,
+            ),
+            array (
+                'key' => 'field_594186a5ae693',
+                'label' => 'How Many Testimonial will Show?',
+                'name' => 'how_many_testimonial_will_show',
+                'type' => 'number',
+                'default_value' => 5,
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+                'min' => '',
+                'max' => '',
+                'step' => '',
+            ),
+        ),
+        'location' => array (
+            array (
+                array (
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'index.php',
+                    'order_no' => 0,
+                    'group_no' => 0,
+                ),
+            ),
+        ),
+        'options' => array (
+            'position' => 'normal',
+            'layout' => 'default',
+            'hide_on_screen' => array (
+            ),
+        ),
+        'menu_order' => 0,
+    ));
+}
+
+
+
 function custom_post_type_vehicle()
 {
     $labels = array(
@@ -218,7 +322,7 @@ add_action('init', 'custom_post_type_vehicle');
 
 /**
  * *********************************************
- * ***** Start Adding Vehicle Custom Fields ****
+ * ******** Start Manage Vehicle Section *******
  * *********************************************
  */
 
@@ -244,12 +348,12 @@ function vehicle_specifications($meta_boxes)
             array(
                 'id' => 'vehicle_short_description',
                 'type' => 'textarea',
-                'name' => esc_html__( 'Short Description', 'metabox-online-generator' ),
-                'placeholder' => esc_html__( 'Short Description', 'metabox-online-generator' ),
+                'name' => esc_html__( 'Short Description', TEXT_DOMAIN ),
+                'placeholder' => esc_html__( 'Short Description', TEXT_DOMAIN ),
                 'rows' => 5,
             ),
             array(
-                'id' => 'vehicle_brands',
+                'id' => 'vehicle_brand',
                 'type' => 'taxonomy_advanced',
                 'name' => esc_html__('Brands', TEXT_DOMAIN),
                 'std' => 'Choose',
@@ -259,7 +363,7 @@ function vehicle_specifications($meta_boxes)
                 'field_type' => 'select',
             ),
             array(
-                'id' => 'vehicle_categories',
+                'id' => 'vehicle_category',
                 'type' => 'taxonomy_advanced',
                 'name' => esc_html__('Categories', TEXT_DOMAIN),
                 'std' => 'Choose',
@@ -269,7 +373,7 @@ function vehicle_specifications($meta_boxes)
                 'field_type' => 'select',
             ),
             array(
-                'id' => 'vehicle_conditions',
+                'id' => 'vehicle_condition',
                 'type' => 'taxonomy_advanced',
                 'name' => esc_html__('Conditions', TEXT_DOMAIN),
                 'std' => 'Choose',
@@ -279,7 +383,7 @@ function vehicle_specifications($meta_boxes)
                 'field_type' => 'select',
             ),
             array(
-                'id' => 'vehicle_fuels',
+                'id' => 'vehicle_fuel',
                 'type' => 'taxonomy_advanced',
                 'name' => esc_html__('Fuels', TEXT_DOMAIN),
                 'std' => 'Choose',
@@ -289,7 +393,7 @@ function vehicle_specifications($meta_boxes)
                 'field_type' => 'select',
             ),
             array(
-                'id' => 'vehicle_transmissions',
+                'id' => 'vehicle_transmission',
                 'type' => 'taxonomy_advanced',
                 'name' => esc_html__('Transmissions', TEXT_DOMAIN),
                 'std' => 'Choose',
@@ -297,12 +401,6 @@ function vehicle_specifications($meta_boxes)
                 'placeholder' => esc_html__('Choose Transmission', TEXT_DOMAIN),
                 'taxonomy' => 'vehicle_transmissions',
                 'field_type' => 'select',
-            ),
-            array(
-                'id' => 'vehicle_model',
-                'type' => 'text',
-                'name' => esc_html__('Model', TEXT_DOMAIN),
-                'placeholder' => esc_html__('Model', TEXT_DOMAIN),
             ),
             array(
                 'id' => 'vehicle_listing_price',
@@ -529,7 +627,7 @@ function vehicle_gullaries($meta_boxes)
     $meta_boxes[] = array(
         'id' => 'vehicle_features_gullaries',
         'title' => esc_html__('Vehicle Gullaries', TEXT_DOMAIN),
-        'post_types' => array('vehicles'),
+        'post_types' => array('Listing (list layout)'),
         'context' => 'advanced',
         'priority' => 'default',
         'autosave' => false,
@@ -553,11 +651,60 @@ add_filter('rwmb_meta_boxes', 'vehicle_specifications');
 add_filter('rwmb_meta_boxes', 'vehicle_features');
 add_filter('rwmb_meta_boxes', 'vehicle_gullaries');
 
+
 /**
- * *********************************************
- * ****** End Adding Vehicle Custom Fields *****
- * *********************************************
+ * Manage vehicles features header's column name
  */
+
+function manage_vehicles_tables_headers()
+{
+    $columns = [
+        'cb' => '<input type="checkbox"/>',
+        'title' => 'Name of Vehicle',
+        'price' => 'Price',
+        'featured' => 'Featured',
+        'status' => 'Status',
+        'modified' => 'Last Modified'
+    ];
+    return $columns;
+}
+add_filter('manage_edit-vehicles_columns', 'manage_vehicles_tables_headers');
+
+
+/**
+ * Manage vehicles column's values
+ * @param $column
+ * @param $postID
+ */
+function manage_vehicles_columns_values($column, $postID)
+{
+
+    $result = '';
+    switch ($column) {
+        case 'status':
+            $result = ucfirst(get_field('vehicle_status', $postID));
+            if(!$result) {
+                $result = 'N/A';
+            }
+            break;
+        case 'featured':
+            $result = get_field('vehicle_is_featured', $postID);
+            if($result){
+                $result = 'Yes';
+            } else {
+                $result = 'No';
+            }
+            break;
+        case 'price':
+            $result = '$'. number_format(get_field('vehicle_sale_price', $postID), 2);
+            break;
+        case 'modified':
+            $result = the_modified_date('M j, Y');
+            break;
+    }
+    echo $result;
+}
+add_filter('manage_vehicles_posts_custom_column', 'manage_vehicles_columns_values', 1, 2);
 
 /**
  * @param $query
@@ -580,3 +727,188 @@ function getActiveVehicles($query)
     $defaultQuery = array_merge($defaultQuery, $query);
     return new WP_Query($defaultQuery);
 }
+
+/**
+ * *********************************************
+ * ********* End Manage Vehicle Section ********
+ * *********************************************
+ */
+
+
+/**
+ * *********************************************
+ * ****Start Adding Testimonial Custom Fields***
+ * *********************************************
+ */
+
+function custom_post_type_testimonial()
+{
+    $labels = array(
+        'name' => _x('Testimonial', 'Post Type General Name', TEXT_DOMAIN),
+        'singular_name' => _x('Testimonial', 'Post Type Singular Name', TEXT_DOMAIN),
+        'menu_name' => __('Manage Testimonials', TEXT_DOMAIN),
+        'parent_item_colon' => __('Parent Testimonial:', TEXT_DOMAIN),
+        'all_items' => __('All Testimonials', TEXT_DOMAIN),
+        'view_item' => __('View Testimonial', TEXT_DOMAIN),
+        'add_new_item' => __('Add New Testimonial', TEXT_DOMAIN),
+        'add_new' => __('Add New', TEXT_DOMAIN),
+        'edit_item' => __('Edit Testimonial', TEXT_DOMAIN),
+        'update_item' => __('Update Testimonial', TEXT_DOMAIN),
+        'search_items' => __('Search Testimonial', TEXT_DOMAIN),
+        'not_found' => __('Not found', TEXT_DOMAIN),
+        'not_found_in_trash' => __('Not found in Trash', TEXT_DOMAIN),
+    );
+    $args = array(
+        'label' => __('testimonials', TEXT_DOMAIN),
+        'description' => __('custom post type for testimonials', TEXT_DOMAIN),
+        'labels' => $labels,
+        'supports' => array('title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'trackbacks', 'revisions', 'custom-fields', 'page-attributes', 'post-formats',),
+        'taxonomies' => array('models'),
+        'hierarchical' => false,
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'show_in_nav_menus' => true,
+        'show_in_admin_bar' => true,
+        'menu_position' => 25,
+        'can_export' => true,
+        'has_archive' => true,
+        'exclude_from_search' => false,
+        'publicly_queryable' => true,
+        'capability_type' => 'page',
+    );
+    register_post_type('testimonials', $args);
+}
+
+add_action('init', 'custom_post_type_testimonial');
+
+function testimonial_fields($meta_boxes)
+{
+    $meta_boxes[] = array(
+        'id' => 'testimonial_section',
+        'title' => esc_html__('Testimonials Section', TEXT_DOMAIN),
+        'post_types' => array('testimonials'),
+        'context' => 'advanced',
+        'priority' => 'high',
+        'autosave' => true,
+        'fields' => array(
+            array(
+                'id' => 'testimonial_image',
+                'type' => 'image_advanced',
+                'name' => esc_html__('Client or Author Image', TEXT_DOMAIN),
+            ),
+            array(
+                'id' => 'testimonial_client',
+                'type' => 'text',
+                'name' => esc_html__('Client or Customer Name', TEXT_DOMAIN),
+                'desc' => esc_html__('Write client or customer name who gave testimonial', TEXT_DOMAIN),
+                'placeholder' => esc_html__('Client or Customer Name', TEXT_DOMAIN),
+            ),
+            array(
+                'id' => 'testimonial_rating',
+                'name' => esc_html__('Rating', TEXT_DOMAIN),
+                'type' => 'select',
+                'desc' => esc_html__('Write testimonial rating', TEXT_DOMAIN),
+                'placeholder' => esc_html__('Choose Rating', TEXT_DOMAIN),
+                'options' => array(
+                    '1' => '1',
+                    '2' => '2',
+                    '3' => '3',
+                    '4' => '4',
+                    '5' => '5',
+                ),
+            ),
+            array(
+                'id' => 'testimonial_visibility',
+                'name' => esc_html__('Visibility', TEXT_DOMAIN),
+                'type' => 'select',
+                'placeholder' => esc_html__('Choose Visibility', TEXT_DOMAIN),
+                'options' => array(
+                    'visible' => 'Visible',
+                    'invisible' => 'Invisible',
+                ),
+            ),
+        ),
+    );
+
+    return $meta_boxes;
+}
+add_filter('rwmb_meta_boxes', 'testimonial_fields');
+
+
+function manage_testimonial_table_header()
+{
+    $column = [
+        'cb' => '<input type="checkbox"/>',
+        'title' => 'Client or Customer',
+        'client' => 'Client or Customer',
+        'rating' => 'Rating',
+        'visibility' => 'Rating',
+        'testimonial' => 'Testimonial',
+    ];
+    return $column;
+}
+add_filter('manage_edit-testimonials_columns', 'manage_testimonial_table_header');
+
+function manage_testimonials_columns_values($column, $postID)
+{
+    $result = '';
+    switch ($column) {
+        case 'client':
+            $result = get_field('testimonial_client', $postID);
+            if(!$result) {
+                $result = 'N/A';
+            }
+            break;
+        case 'testimonial':
+            $result = get_the_content();
+            if(!$result) {
+                $result = 'N/A';
+            }
+            break;
+        case 'rating':
+            $result = get_field('testimonial_rating', $postID);
+            if(!$result) {
+                $result = 'N/A';
+            }
+            break;
+        case 'visibility':
+            $result = ucfirst(get_field('testimonial_visibility', $postID));
+            if(!$result) {
+                $result = 'N/A';
+            }
+            break;
+    }
+
+    echo $result;
+}
+add_filter('manage_testimonials_posts_custom_column', 'manage_testimonials_columns_values', 1, 2);
+
+/**
+ * @param $query
+ * @return WP_Query
+ */
+function getVisibleTestimonial($query)
+{
+    $defaultQuery = array(
+        'post_type' => 'testimonials',
+        'meta_query' => array(
+            array(
+                'key'     => 'testimonial_visibility',
+                'value'   => 'visible',
+                'compare' => '=',
+            )
+        ),
+        'posts_per_page' => 3
+    );
+
+    $defaultQuery = array_merge($defaultQuery, $query);
+    return new WP_Query($defaultQuery);
+}
+
+/**
+ * *********************************************
+ * **** End Adding testimonials Custom Fields **
+ * *********************************************
+ */
+
