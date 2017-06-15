@@ -492,7 +492,7 @@ body {
 }
 
 .orange-color {
-    color: orange;
+    color: #F34B0A;
 }
 
 .details-button {
@@ -540,7 +540,6 @@ body {
 .testimonials-inner .star-rating li {
     list-style: none;
     display: inline-block;
-    color: #F34B0A;
 }
 
 .testimonials-inner .line-dec {

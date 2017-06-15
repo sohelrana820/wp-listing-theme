@@ -34,44 +34,48 @@ Template Name: Home
 </div>
 <!-- Recent car end-->
 
+<?php
+$testimonials = getVisibleTestimonial(['posts_per_page' => 5]);
+$countTestimonials = $testimonials->post_count;
+if($countTestimonials > 0 && get_field('enabled_disable_testimonial_section') == 'Yes'):
+?>
 <!-- Testimonials start-->
 <div class="testimonials">
     <div class="col-lg-12">
         <div id="carouse2-example-generic" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
-                <li data-target="#carouse2-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carouse2-example-generic" data-slide-to="1"></li>
-                <li data-target="#carouse2-example-generic" data-slide-to="2"></li>
-                <li data-target="#carouse2-example-generic" data-slide-to="3"></li>
+                <?php while ($countTestimonials > 0): $counter?>
+                <li data-target="#carouse2-example-generic" data-slide-to="<?php echo $counter;?>" <?php if($counter == 0){echo 'class="active"';}?>></li>
+                <?php $countTestimonials--; $counter++?>
+                <?php endwhile;?>
             </ol>
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <?php
                 $counter = 0;
-                $testimonials = getVisibleTestimonial(['posts_per_page' => 5]);
                 while ($testimonials->have_posts()): $testimonials->the_post();
                 ?>
                 <div class="item <?php if($counter == 0){echo 'active';} $counter++?>">
                     <div class="container">
                         <div class="col-md-8 col-md-offset-2 testimonials-inner">
-                            <ul class="star-rating orange-color">
-                                <li>
-                                    <i class="fa fa-star"></i>
-                                </li>
-                                <li>
-                                    <i class="fa fa-star"></i>
-                                </li>
-                                <li>
-                                    <i class="fa fa-star"></i>
-                                </li>
-                                <li>
-                                    <i class="fa fa-star"></i>
-                                </li>
-                                <li>
-                                    <i class="fa fa-star"></i>
-                                </li>
+                            <?php
+                            $star = (int) get_post_meta(get_the_ID(), 'testimonial_rating', true);
+                            $unStar = 5 - $star;
+                            ?>
+                            <ul class="star-rating">
+                                <?php while ($star > 0): ?>
+                                    <li>
+                                        <i class="fa fa-star orange-color"></i>
+                                    </li>
+                                <?php $star--; endwhile; ?>
+
+                                <?php while ($unStar > 0): ?>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                <?php $unStar--; endwhile; ?>
                             </ul>
                             <div class="line-dec"></div>
                             <p>
@@ -118,5 +122,6 @@ Template Name: Home
     <div class="clearfix"></div>
 </div>
 <!-- Testimonials end-->
+<?php endif;?>
 
 <?php get_footer();?>

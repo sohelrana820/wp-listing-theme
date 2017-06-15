@@ -25,109 +25,11 @@ function carHouseThemeSetup()
 add_action('after_setup_theme', 'carHouseThemeSetup');
 
 
-if(function_exists("register_field_group"))
-{
-    register_field_group(array (
-        'id' => 'acf_listing-title',
-        'title' => 'Listing Title',
-        'fields' => array (
-            array (
-                'key' => 'field_5941848e73b23',
-                'label' => 'Title',
-                'name' => 'title',
-                'type' => 'text',
-                'default_value' => 'Recent Car',
-                'placeholder' => 'Title',
-                'prepend' => '',
-                'append' => '',
-                'formatting' => 'html',
-                'maxlength' => '',
-            ),
-            array (
-                'key' => 'field_594184fc73b24',
-                'label' => 'Subtitle',
-                'name' => 'subtitle',
-                'type' => 'text',
-                'default_value' => 'Check our recent motors',
-                'placeholder' => 'Subtitle',
-                'prepend' => '',
-                'append' => '',
-                'formatting' => 'html',
-                'maxlength' => '',
-            ),
-        ),
-        'location' => array (
-            array (
-                array (
-                    'param' => 'page_template',
-                    'operator' => '==',
-                    'value' => 'index.php',
-                    'order_no' => 0,
-                    'group_no' => 0,
-                ),
-            ),
-        ),
-        'options' => array (
-            'position' => 'normal',
-            'layout' => 'default',
-            'hide_on_screen' => array (
-            ),
-        ),
-        'menu_order' => 0,
-    ));
-    register_field_group(array (
-        'id' => 'acf_home-page-testimonial',
-        'title' => 'Home Page Testimonial',
-        'fields' => array (
-            array (
-                'key' => 'field_59418674ae692',
-                'label' => 'Enabled/Disable Testimonial Section?',
-                'name' => 'enabled_disable_testimonial_section',
-                'type' => 'select',
-                'choices' => array (
-                    'Yes' => 'Yes',
-                    'No' => 'No',
-                ),
-                'default_value' => 'Yes',
-                'allow_null' => 0,
-                'multiple' => 0,
-            ),
-            array (
-                'key' => 'field_594186a5ae693',
-                'label' => 'How Many Testimonial will Show?',
-                'name' => 'how_many_testimonial_will_show',
-                'type' => 'number',
-                'default_value' => 5,
-                'placeholder' => '',
-                'prepend' => '',
-                'append' => '',
-                'min' => '',
-                'max' => '',
-                'step' => '',
-            ),
-        ),
-        'location' => array (
-            array (
-                array (
-                    'param' => 'page_template',
-                    'operator' => '==',
-                    'value' => 'index.php',
-                    'order_no' => 0,
-                    'group_no' => 0,
-                ),
-            ),
-        ),
-        'options' => array (
-            'position' => 'normal',
-            'layout' => 'default',
-            'hide_on_screen' => array (
-            ),
-        ),
-        'menu_order' => 0,
-    ));
-}
-
-
+/**
+ * *********************************************
+ * ******** Start Manage Vehicle Section *******
+ * *********************************************
+ */
 
 function custom_post_type_vehicle()
 {
@@ -319,12 +221,6 @@ function custom_post_type_vehicle()
 }
 
 add_action('init', 'custom_post_type_vehicle');
-
-/**
- * *********************************************
- * ******** Start Manage Vehicle Section *******
- * *********************************************
- */
 
 /**
  * @param $meta_boxes
@@ -735,9 +631,11 @@ function getActiveVehicles($query)
  */
 
 
+
+
 /**
  * *********************************************
- * ****Start Adding Testimonial Custom Fields***
+ * **********Start Testimonial Section *********
  * *********************************************
  */
 
@@ -779,7 +677,6 @@ function custom_post_type_testimonial()
     );
     register_post_type('testimonials', $args);
 }
-
 add_action('init', 'custom_post_type_testimonial');
 
 function testimonial_fields($meta_boxes)
@@ -834,7 +731,6 @@ function testimonial_fields($meta_boxes)
     return $meta_boxes;
 }
 add_filter('rwmb_meta_boxes', 'testimonial_fields');
-
 
 function manage_testimonial_table_header()
 {
@@ -908,7 +804,120 @@ function getVisibleTestimonial($query)
 
 /**
  * *********************************************
- * **** End Adding testimonials Custom Fields **
+ * ********** End Testimonial Section **********
  * *********************************************
  */
 
+
+/**
+ * *********************************************
+ * ******* Start Page's Template Section *******
+ * *********************************************
+ */
+if(function_exists("register_field_group"))
+{
+    register_field_group(array (
+        'id' => 'acf_listing-title',
+        'title' => 'Listing Title',
+        'fields' => array (
+            array (
+                'key' => 'field_5941848e73b23',
+                'label' => 'Title',
+                'name' => 'title',
+                'type' => 'text',
+                'default_value' => 'Recent Car',
+                'placeholder' => 'Title',
+                'prepend' => '',
+                'append' => '',
+                'formatting' => 'html',
+                'maxlength' => '',
+            ),
+            array (
+                'key' => 'field_594184fc73b24',
+                'label' => 'Subtitle',
+                'name' => 'subtitle',
+                'type' => 'text',
+                'default_value' => 'Check our recent motors',
+                'placeholder' => 'Subtitle',
+                'prepend' => '',
+                'append' => '',
+                'formatting' => 'html',
+                'maxlength' => '',
+            ),
+        ),
+        'location' => array (
+            array (
+                array (
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'index.php',
+                    'order_no' => 0,
+                    'group_no' => 0,
+                ),
+            ),
+        ),
+        'options' => array (
+            'position' => 'normal',
+            'layout' => 'default',
+            'hide_on_screen' => array (
+            ),
+        ),
+        'menu_order' => 0,
+    ));
+
+    register_field_group(array (
+        'id' => 'acf_home-page-testimonial',
+        'title' => 'Home Page Testimonial',
+        'fields' => array (
+            array (
+                'key' => 'field_59418674ae692',
+                'label' => 'Enabled/Disable Testimonial Section?',
+                'name' => 'enabled_disable_testimonial_section',
+                'type' => 'select',
+                'choices' => array (
+                    'Yes' => 'Yes',
+                    'No' => 'No',
+                ),
+                'default_value' => 'Yes',
+                'allow_null' => 0,
+                'multiple' => 0,
+            ),
+            array (
+                'key' => 'field_594186a5ae693',
+                'label' => 'How Many Testimonial will Show?',
+                'name' => 'how_many_testimonial_will_show',
+                'type' => 'number',
+                'default_value' => 5,
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+                'min' => '',
+                'max' => '',
+                'step' => '',
+            ),
+        ),
+        'location' => array (
+            array (
+                array (
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'index.php',
+                    'order_no' => 0,
+                    'group_no' => 0,
+                ),
+            ),
+        ),
+        'options' => array (
+            'position' => 'normal',
+            'layout' => 'default',
+            'hide_on_screen' => array (
+            ),
+        ),
+        'menu_order' => 0,
+    ));
+}
+/**
+ * *********************************************
+ * ******** End Page's Template Section ********
+ * *********************************************
+ */
