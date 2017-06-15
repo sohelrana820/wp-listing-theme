@@ -122,6 +122,7 @@
 </div>
 <!-- Main header end-->
 
+<?php if(is_home() || is_front_page()):?>
 <!-- banner start-->
 <div class="banner">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -170,3 +171,4 @@
     </div>
 </div>
 <!-- banner end-->
+<?php endif;?>

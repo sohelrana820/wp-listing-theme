@@ -817,15 +817,15 @@ function getVisibleTestimonial($query)
 if(function_exists("register_field_group"))
 {
     register_field_group(array (
-        'id' => 'acf_listing-title',
+        'id' => 'home_page_listing_title',
         'title' => 'Listing Title',
         'fields' => array (
             array (
                 'key' => 'field_5941848e73b23',
                 'label' => 'Title',
-                'name' => 'title',
+                'name' => 'listing_title',
                 'type' => 'text',
-                'default_value' => 'Recent Car',
+                'default_value' => 'Recent Vehicles',
                 'placeholder' => 'Title',
                 'prepend' => '',
                 'append' => '',
@@ -835,7 +835,7 @@ if(function_exists("register_field_group"))
             array (
                 'key' => 'field_594184fc73b24',
                 'label' => 'Subtitle',
-                'name' => 'subtitle',
+                'name' => 'listing_subtitle',
                 'type' => 'text',
                 'default_value' => 'Check our recent motors',
                 'placeholder' => 'Subtitle',
@@ -866,7 +866,7 @@ if(function_exists("register_field_group"))
     ));
 
     register_field_group(array (
-        'id' => 'acf_home-page-testimonial',
+        'id' => 'home-page-testimonial',
         'title' => 'Home Page Testimonial',
         'fields' => array (
             array (
@@ -902,6 +902,126 @@ if(function_exists("register_field_group"))
                     'param' => 'page_template',
                     'operator' => '==',
                     'value' => 'index.php',
+                    'order_no' => 0,
+                    'group_no' => 0,
+                ),
+            ),
+        ),
+        'options' => array (
+            'position' => 'normal',
+            'layout' => 'default',
+            'hide_on_screen' => array (
+            ),
+        ),
+        'menu_order' => 0,
+    ));
+
+    register_field_group(array (
+        'id' => 'listing_page_banners',
+        'title' => 'Banner',
+        'fields' => array (
+            array (
+                'key' => 'field_59430eaa39aad',
+                'label' => 'Banner Image',
+                'name' => 'banner_image',
+                'type' => 'image',
+                'save_format' => 'object',
+                'preview_size' => 'thumbnail',
+                'library' => 'all',
+            ),
+            array (
+                'key' => 'field_59430ec139aae',
+                'label' => 'Title',
+                'name' => 'banner_title',
+                'type' => 'text',
+                'default_value' => 'Vehicle Listing',
+                'placeholder' => 'Title',
+                'prepend' => '',
+                'append' => '',
+                'formatting' => 'html',
+                'maxlength' => '',
+            ),
+            array (
+                'key' => 'field_59430ede39aaf',
+                'label' => 'Subtitle',
+                'name' => 'banner_subtitle',
+                'type' => 'text',
+                'default_value' => 'Check our latest available collection',
+                'placeholder' => 'Subtitle',
+                'prepend' => '',
+                'append' => '',
+                'formatting' => 'html',
+                'maxlength' => '',
+            ),
+        ),
+        'location' => array (
+            array (
+                array (
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'listing.php',
+                    'order_no' => 0,
+                    'group_no' => 0,
+                ),
+            ),
+        ),
+        'options' => array (
+            'position' => 'normal',
+            'layout' => 'default',
+            'hide_on_screen' => array (
+            ),
+        ),
+        'menu_order' => 0,
+    ));
+
+    register_field_group(array (
+        'id' => 'listing_page__listing_title',
+        'title' => 'Listing Title',
+        'fields' => array (
+            array (
+                'key' => 'field_5941848e73b23',
+                'label' => 'Title',
+                'name' => 'listing_title',
+                'type' => 'text',
+                'default_value' => 'Recent Vehicle',
+                'placeholder' => 'Title',
+                'prepend' => '',
+                'append' => '',
+                'formatting' => 'html',
+                'maxlength' => '',
+            ),
+            array (
+                'key' => 'field_594184fc73b24',
+                'label' => 'Subtitle',
+                'name' => 'listing_subtitle',
+                'type' => 'text',
+                'default_value' => 'Check our recent vehicle',
+                'placeholder' => 'Subtitle',
+                'prepend' => '',
+                'append' => '',
+                'formatting' => 'html',
+                'maxlength' => '',
+            ),
+            array (
+                'key' => 'field_59418674aed692',
+                'label' => 'Listing View',
+                'name' => 'listing_view',
+                'type' => 'select',
+                'choices' => array (
+                    'Grid' => 'Grid',
+                    'List' => 'List',
+                ),
+                'default_value' => 'List',
+                'allow_null' => 0,
+                'multiple' => 0,
+            ),
+        ),
+        'location' => array (
+            array (
+                array (
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'listing.php',
                     'order_no' => 0,
                     'group_no' => 0,
                 ),
