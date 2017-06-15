@@ -56,16 +56,16 @@ Template Name: Listing (list layout)
 				<?php
 				$vehicles = getActiveVehicles(['posts_per_page' => 3]);
 				$listingView = get_field('listing_view');
-				if($listingView == 'Grid') {
-					$templatePart = 'elements/listing-grid';
-				} else {
-					$templatePart = 'elements/listing-list';
-				}
-
 				while($vehicles->have_posts()): $vehicles->the_post();
-					get_template_part($templatePart);
-				endwhile;
 				?>
+					<?php if($listingView == 'Grid'): ?>
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							<?php get_template_part('elements/listing-grid') ?>
+						</div>
+					<?php else:?>
+						<?php get_template_part('elements/listing-list') ?>
+					<?php endif;?>
+				<?php endwhile;?>
 				<!-- Page navigation start-->
 				<nav aria-label="Page navigation">
 					<ul class="pagination">
