@@ -683,7 +683,7 @@ function testimonial_fields($meta_boxes)
 {
     $meta_boxes[] = array(
         'id' => 'testimonial_section',
-        'title' => esc_html__('Testimonials Section', TEXT_DOMAIN),
+        'title' => esc_html__('General Information', TEXT_DOMAIN),
         'post_types' => array('testimonials'),
         'context' => 'advanced',
         'priority' => 'high',
