@@ -13,7 +13,7 @@ Template Name: Home
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="section-heading">
                         <i class="fa fa-car"></i>
-                        <h2><?php echo get_field( "subtitle" );?></h2>
+                        <h2><?php echo get_field( "title" );?></h2>
                         <div class="border"></div>
                         <h4><?php echo get_field( "subtitle" )?></h4>
                     </div>
