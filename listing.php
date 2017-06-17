@@ -54,7 +54,8 @@ Template Name: Listing (list layout)
 				</div>
 
 				<?php
-				$vehicles = getActiveVehicles(['posts_per_page' => 3]);
+				$vehiclesPerPage = 2;
+				$vehicles = getActiveVehicles(['posts_per_page' => $vehiclesPerPage]);
 				$listingView = get_field('listing_view');
 				while($vehicles->have_posts()): $vehicles->the_post();
 				?>
@@ -65,7 +66,21 @@ Template Name: Listing (list layout)
 					<?php else:?>
 						<?php get_template_part('elements/listing-list') ?>
 					<?php endif;?>
+
+
 				<?php endwhile;?>
+
+
+				<?php
+				var_dump($vehicles->max_num_pages);
+				var_dump($vehicles->max_num_pages);
+				?>
+
+				<?php if($vehicles->max_num_pages): ?>
+					<div class="page-count"><?php _e('Page','progressionstudios'); ?> <?php echo $paged; ?> <?php _e('of','progressionstudios'); ?> <?php echo $vehicles->max_num_pages; ?></div>
+					<?php kriesi_pagination($vehicles->max_num_pages, $vehiclesPerPage); ?>
+				<?php endif; ?>
+
 				<!-- Page navigation start-->
 				<nav aria-label="Page navigation">
 					<ul class="pagination">
