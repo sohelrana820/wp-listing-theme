@@ -20,6 +20,10 @@ function carHouseThemeSetup()
      *
      */
     add_theme_support('post-thumbnails');
+
+    // Register navigation
+    register_nav_menu( 'header-menu', __( 'Header Menu', TEXT_DOMAIN ) );
+    register_nav_menu( 'footer-menu', __( 'Footer Menu', TEXT_DOMAIN ) );
 }
 
 add_action('after_setup_theme', 'carHouseThemeSetup');

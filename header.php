@@ -80,7 +80,7 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
+                <!--<ul class="nav navbar-nav navbar-right">
                     <li><a href="index.html" class="active">Home</a></li>
                     <li class="dropdown">
                         <a href="car_list.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Car Listing<span class="caret"></span></a>
@@ -113,7 +113,15 @@
                         </ul>
                     </li>
                     <li><a href="contact.html">Contact Us</a></li>
-                </ul>
+                </ul>-->
+                <?php
+                wp_nav_menu(array(
+                    'menu' => 'Header Menu', // Do not fall back to first non-empty menu.
+                    'theme_location' => '__no_such_location',
+                    'fallback_cb' => false
+                ));
+
+                ?>
             </div>
             <!-- /.navbar-collapse -->
             <!-- /.container -->
